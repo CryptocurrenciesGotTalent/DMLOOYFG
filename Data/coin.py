@@ -1,7 +1,7 @@
 import os
 
 def dateToString(dd, mm, yyyy):
-	return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][mm-1]+ " " + str(dd)+" "+str(yyyy)
+	return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][mm-1]+ " " + str(dd).zfill(2)+" "+str(yyyy)
 
 
 
