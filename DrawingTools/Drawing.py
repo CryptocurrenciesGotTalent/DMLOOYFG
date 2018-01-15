@@ -27,7 +27,7 @@ class Drawing:
 
   def draw(self):
     ani = animation.FuncAnimation(self.fig, self.animate, 
-                                  range(1,100), 
+                                  self.strategy.callBackData(), 
                                   init_func=self.init,
                                   interval=1, blit=True )
     plt.show()
