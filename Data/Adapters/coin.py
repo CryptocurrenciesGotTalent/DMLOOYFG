@@ -19,7 +19,7 @@ class Coin:
 		self.name = name
 
 	def getCandleAt(self, dd, mm, yyyy):
-		lines = open(os.path.abspath(__file__ + "/../CoinsData/"+self.name+".txt"), "r").readlines()
+		lines = open(os.path.abspath(__file__ + "/../../CoinsData/"+self.name+".txt"), "r").readlines()
 		for line in lines:
 			data = line.split(";")
 			if dateToString(dd,mm,yyyy) == data[0]:
@@ -29,10 +29,12 @@ class Coin:
 
 
 	def getMarketCapAt(self, dd, mm, yyyy):
-		lines = open(os.path.abspath(__file__ + "/../CoinsData/"+self.name+".txt"), "r").readlines()
+		lines = open(os.path.abspath(__file__ + "/../../CoinsData/"+self.name+".txt"), "r").readlines()
 		for line in lines:
 			data = line.split(";")
 			if dateToString(dd,mm,yyyy) == data[0]:
 				return float(data[6])
 
 		raise ValueError("could not retrieve data for " + self.name + " at date " + dateToString(dd,mm,yyyy))
+
+
