@@ -8,7 +8,7 @@ class MarketState:
 		self.month = mm
 		self.year = yyyy
 		self.dateString = dateToString(dd,mm,yyyy)
-		self.data = open(os.path.abspath(__file__ + "/../../CoinsDataByDate/"+self.dateString+".txt"), "r").readlines()
+		self.data = open(os.path.abspath(__file__ + "/../../Data/CoinsDataByDate/"+self.dateString+".txt"), "r").readlines()
 
 
 	def getCoinAtRank(self, i):
