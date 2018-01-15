@@ -8,7 +8,7 @@ class MarketState:
 		self.month = mm
 		self.year = yyyy
 		self.dateString = dateToString(dd,mm,yyyy)
-		self.data = open(os.path.abspath(__file__ + "/../CoinsDataByDate/"+self.dateString+".txt"), "r").readlines()
+		self.data = open(os.path.abspath(__file__ + "/../../Data/CoinsDataByDate/"+self.dateString+".txt"), "r").readlines()
 
 
 	def getCoinAtRank(self, i):
@@ -16,7 +16,7 @@ class MarketState:
 		if(i>len(self.data)):
 			raise ValueError("invalid rank : too big")
 
-		return self.data[i-1].split(";")[0]
+		return Coin(self.data[i-1].split(";")[0])
 
 
 	def getMarketCapAtRank(self, i):
@@ -30,5 +30,6 @@ class MarketState:
 	def getTotalMarketCap(self):
 
 		return sum([self.getMarketCapAtRank(i) for i in range(1, len(self.data)+1)])
+
 
 
