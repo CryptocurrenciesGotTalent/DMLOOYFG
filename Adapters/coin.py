@@ -32,7 +32,7 @@ class Coin:
 		lines = open(os.path.abspath(__file__ + "/../../Data/CoinsData/"+self.name+".txt"), "r").readlines()
 		for line in lines:
 			data = line.split(";")
-			if dateToString(dd,mm,yyyy) == data[0]:
+			if dateToString(dd,mm,yyyy) == data[0] and float(data[6]) != 0.0:
 				return float(data[6])
 
 		return None
@@ -65,8 +65,8 @@ class Coin:
 		dd2, mm2, yyyy2 = finalDate
 
 		if self.getMarketCapAt(dd1, mm1, yyyy1) != None:
+			if self.getMarketCapAt(dd2, mm2, yyyy2) == None:
+				return 0
 			return self.getMarketCapAt(dd2, mm2, yyyy2)/self.getMarketCapAt(dd1, mm1, yyyy1)
 
 		return None
-
-
