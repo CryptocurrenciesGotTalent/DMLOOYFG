@@ -35,7 +35,7 @@ class Coin:
 			if dateToString(dd,mm,yyyy) == data[0]:
 				return float(data[6])
 
-		raise None
+		return None
 
 	
 	def getPriceVariation(self, initialDate, finalDate, priceType):
@@ -67,6 +67,6 @@ class Coin:
 		if self.getMarketCapAt(dd1, mm1, yyyy1) != None:
 			return self.getMarketCapAt(dd2, mm2, yyyy2)/self.getMarketCapAt(dd1, mm1, yyyy1)
 
-		raise None
+		return None
 
 

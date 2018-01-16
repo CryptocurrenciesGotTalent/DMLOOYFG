@@ -5,16 +5,8 @@ class TestStrategy(Strategy.Strategy) :
     pass
 
   def callBackData(self):
-    return range(1, 100)
+    return range(10, 20000,10)
     
-  def getInitialX(self):
-    return range(0,100)
+  def getXY(self, i):
+    return range(0,i,5),range(0,i,5)
 
-  def getInitialY(self):
-    return range(0,100)
-
-  def getX(self, i):
-    return range(0,i)
-
-  def getY(self, i):
-    return range(0,i)

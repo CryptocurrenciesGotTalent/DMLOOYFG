@@ -7,27 +7,18 @@ class Drawing:
 
   def __init__(self, strategy):
     self.strategy = strategy
-    self.fig, self.ax = plt.subplots()
-    self.line, = self.ax.plot(self.strategy.getInitialX(), 
-                              self.strategy.getInitialY())
+    self.fig = plt.figure()
+    self.ax = self.fig.add_subplot(1,1,1)
   
-  # Chart initial values
-  def init(self):
-    self.line.set_xdata(self.strategy.getInitialX())
-    self.line.set_ydata(self.strategy.getInitialY())
-    return self.line,
-
   # Chart values at frame i
   def animate(self,i):
     print(i)
-    self.line.set_xdata(self.strategy.getX(i))  # update the data
-    self.line.set_ydata(self.strategy.getY(i))  # update the data
-    return self.line,
+    self.ax.clear()
+    x,y = self.strategy.getXY(i)
+    self.ax.plot(x,y, 'bo')
 
   def draw(self):
-    ani = animation.FuncAnimation(self.fig, self.animate, 
-                                  self.strategy.callBackData(), 
-                                  init_func=self.init,
-                                  interval=500, blit=True )
+    ani = animation.FuncAnimation(self.fig, self.animate,self.strategy.callBackData(),
+                                  interval=5)
     plt.show()
 
