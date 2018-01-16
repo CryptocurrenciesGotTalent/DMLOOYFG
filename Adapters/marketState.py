@@ -30,6 +30,22 @@ class MarketState:
 		return float(self.data[i-1].split(";")[6])
 
 
+	def getPriceAtRank(self, i, priceType):
+
+		if(i>len(self.data)):
+			raise ValueError("invalid rank : too big")
+		else:
+			if (priceType = 'OPEN'):
+				price = self.data[i-1].split(";"[1])
+			elif (priceType = 'HIGH'):
+				price = self.data[i-1].split(";"[2])
+			elif (priceType = 'LOW'):
+				price = self.data[i-1].split(";"[3])
+			elif (priceType = 'CLOSE'):
+				price = self.data[i-1].split(";"[4])
+
+		return price
+
 	def getTotalMarketCap(self):
 
 		return sum([self.getMarketCapAtRank(i) for i in range(1, len(self.data)+1)])

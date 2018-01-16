@@ -37,7 +37,27 @@ class Coin:
 
 		raise ValueError("could not retrieve data for " + self.name + " at date " + dateToString(dd,mm,yyyy))
 
-	def getVariation(self, startDate, EndDate):
+	
+	def getPriceVariation(self, initialDate, finalDate, priceType):
+		dd1, mm1, yyyy1 = initialDate
+		dd2, mm2, yyyy2 = finalDate
+
+		if (priceType = 'OPEN'):
+			initialPrice = self.getCandleAt(dd1, mm1, yyyy1).OPEN
+			finalPrice = self.getCandleAt(dd2, mm2, yyyy2).OPEN
+		elif (priceType = 'HIGH'):
+			initialPrice = self.getCandleAt(dd1, mm1, yyyy1).HIGH
+			finalPrice = self.getCandleAt(dd2, mm2, yyyy2).HIGH
+		elif (priceType = 'LOW'):
+			initialPrice = self.getCandleAt(dd1, mm1, yyyy1).LOW
+			finalPrice = self.getCandleAt(dd2, mm2, yyyy2).LOW
+		elif (priceType = 'CLOSE'):
+			initialPrice = self.getCandleAt(dd1, mm1, yyyy1).CLOSE
+			finalPrice = self.getCandleAt(dd2, mm2, yyyy2).CLOSE			
+
+		return finalPrice/initialPrice
+
+	def getMarketCapVariation(self, initialDate, finalDate):
 		dd1, mm1, yyyy1 = startDate
 		dd2, mm2, yyyy2 = EndDate
 
