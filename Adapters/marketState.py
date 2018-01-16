@@ -1,5 +1,5 @@
 import os
-from coin import *
+from Adapters.coin import *
 
 
 class MarketState:
@@ -10,6 +10,8 @@ class MarketState:
 		self.dateString = dateToString(dd,mm,yyyy)
 		self.data = open(os.path.abspath(__file__ + "/../../Data/CoinsDataByDate/"+self.dateString+".txt"), "r").readlines()
 
+	def getNbCoins(self):
+		return len([line for line in self.data if line.strip()])
 
 	def getCoinAtRank(self, i):
 
@@ -30,6 +32,7 @@ class MarketState:
 	def getTotalMarketCap(self):
 
 		return sum([self.getMarketCapAtRank(i) for i in range(1, len(self.data)+1)])
+
 
 
 
