@@ -28,6 +28,6 @@ class Drawing:
     ani = animation.FuncAnimation(self.fig, self.animate, 
                                   self.strategy.callBackData(), 
                                   init_func=self.init,
-                                  interval=1, blit=True )
+                                  interval=500, blit=True )
     plt.show()
 

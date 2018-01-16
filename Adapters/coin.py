@@ -37,5 +37,11 @@ class Coin:
 
 		raise ValueError("could not retrieve data for " + self.name + " at date " + dateToString(dd,mm,yyyy))
 
+	def getVariation(self, startDate, EndDate):
+		dd1, mm1, yyyy1 = startDate
+		dd2, mm2, yyyy2 = EndDate
+
+		return self.getMarketCapAt(dd2, mm2, yyyy2)/self.getMarketCapAt(dd1, mm1, yyyy1)
+
 
 

@@ -13,6 +13,7 @@ class MarketState:
 	def getNbCoins(self):
 		return len([line for line in self.data if line.strip()])
 
+
 	def getCoinAtRank(self, i):
 
 		if(i>len(self.data)):
