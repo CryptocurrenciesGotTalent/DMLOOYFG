@@ -43,4 +43,12 @@ class GainsByMarketShareStrategy(Strategy.Strategy):
     ithDateData = MS.MarketState(ithDate.day, ithDate.month, ithDate.year)
     coins = [ithDateData.getCoinAtRank(k) for k in range(self.nbCoins)]
 
-    return [coins[k].getVariation((ithDate.day, ithDate.month, ithDate.year), (initialDate.day, initialDate.month, initialDate.year)) for k in range(self.nbCoins)]
+    k = 0
+    value = []
+    finalValue = []
+    for k in range(self.nbCoins):
+      value.append(coins[k].getMarketCapVariation((ithDate.day, ithDate.month, ithDate.year), (initialDate.day, initialDate.month, initialDate.year)))
+      if value[k] != None:
+        finalValue.append(value[k])
+
+    return finalValue

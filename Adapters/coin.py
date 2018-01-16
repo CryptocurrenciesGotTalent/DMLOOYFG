@@ -25,7 +25,7 @@ class Coin:
 			if dateToString(dd,mm,yyyy) == data[0]:
 				return Candle(float(data[1]), float(data[2]), float(data[3]), float(data[4]))
 
-		raise ValueError("could not retrieve data for " + self.name + " at date " + dateToString(dd,mm,yyyy))
+		raise None
 
 
 	def getMarketCapAt(self, dd, mm, yyyy):
@@ -35,33 +35,38 @@ class Coin:
 			if dateToString(dd,mm,yyyy) == data[0]:
 				return float(data[6])
 
-		raise ValueError("could not retrieve data for " + self.name + " at date " + dateToString(dd,mm,yyyy))
+		raise None
 
 	
 	def getPriceVariation(self, initialDate, finalDate, priceType):
 		dd1, mm1, yyyy1 = initialDate
 		dd2, mm2, yyyy2 = finalDate
 
-		if (priceType == 'OPEN'):
-			initialPrice = self.getCandleAt(dd1, mm1, yyyy1).OPEN
-			finalPrice = self.getCandleAt(dd2, mm2, yyyy2).OPEN
-		elif (priceType == 'HIGH'):
-			initialPrice = self.getCandleAt(dd1, mm1, yyyy1).HIGH
-			finalPrice = self.getCandleAt(dd2, mm2, yyyy2).HIGH
-		elif (priceType == 'LOW'):
-			initialPrice = self.getCandleAt(dd1, mm1, yyyy1).LOW
-			finalPrice = self.getCandleAt(dd2, mm2, yyyy2).LOW
-		elif (priceType == 'CLOSE'):
-			initialPrice = self.getCandleAt(dd1, mm1, yyyy1).CLOSE
-			finalPrice = self.getCandleAt(dd2, mm2, yyyy2).CLOSE			
+		if self.getCandleAt(dd1, mm1, yyyy1).OPEN != None:
+			if (priceType == 'OPEN'):
+				initialPrice = self.getCandleAt(dd1, mm1, yyyy1).OPEN
+				finalPrice = self.getCandleAt(dd2, mm2, yyyy2).OPEN
+			elif (priceType == 'HIGH'):
+				initialPrice = self.getCandleAt(dd1, mm1, yyyy1).HIGH
+				finalPrice = self.getCandleAt(dd2, mm2, yyyy2).HIGH
+			elif (priceType == 'LOW'):
+				initialPrice = self.getCandleAt(dd1, mm1, yyyy1).LOW
+				finalPrice = self.getCandleAt(dd2, mm2, yyyy2).LOW
+			elif (priceType == 'CLOSE'):
+				initialPrice = self.getCandleAt(dd1, mm1, yyyy1).CLOSE
+				finalPrice = self.getCandleAt(dd2, mm2, yyyy2).CLOSE			
 
-		return finalPrice/initialPrice
+			return finalPrice/initialPrice
+		
+		raise None
 
 	def getMarketCapVariation(self, initialDate, finalDate):
-		dd1, mm1, yyyy1 = startDate
-		dd2, mm2, yyyy2 = EndDate
+		dd1, mm1, yyyy1 = initialDate
+		dd2, mm2, yyyy2 = finalDate
 
-		return self.getMarketCapAt(dd2, mm2, yyyy2)/self.getMarketCapAt(dd1, mm1, yyyy1)
+		if self.getMarketCapAt(dd1, mm1, yyyy1) != None:
+			return self.getMarketCapAt(dd2, mm2, yyyy2)/self.getMarketCapAt(dd1, mm1, yyyy1)
 
+		raise None
 
 
