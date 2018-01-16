@@ -35,13 +35,13 @@ class MarketState:
 		if(i>len(self.data)):
 			raise ValueError("invalid rank : too big")
 		else:
-			if (priceType = 'OPEN'):
+			if (priceType == 'OPEN'):
 				price = self.data[i-1].split(";"[1])
-			elif (priceType = 'HIGH'):
+			elif (priceType == 'HIGH'):
 				price = self.data[i-1].split(";"[2])
-			elif (priceType = 'LOW'):
+			elif (priceType == 'LOW'):
 				price = self.data[i-1].split(";"[3])
-			elif (priceType = 'CLOSE'):
+			elif (priceType == 'CLOSE'):
 				price = self.data[i-1].split(";"[4])
 
 		return price

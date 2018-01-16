@@ -42,16 +42,16 @@ class Coin:
 		dd1, mm1, yyyy1 = initialDate
 		dd2, mm2, yyyy2 = finalDate
 
-		if (priceType = 'OPEN'):
+		if (priceType == 'OPEN'):
 			initialPrice = self.getCandleAt(dd1, mm1, yyyy1).OPEN
 			finalPrice = self.getCandleAt(dd2, mm2, yyyy2).OPEN
-		elif (priceType = 'HIGH'):
+		elif (priceType == 'HIGH'):
 			initialPrice = self.getCandleAt(dd1, mm1, yyyy1).HIGH
 			finalPrice = self.getCandleAt(dd2, mm2, yyyy2).HIGH
-		elif (priceType = 'LOW'):
+		elif (priceType == 'LOW'):
 			initialPrice = self.getCandleAt(dd1, mm1, yyyy1).LOW
 			finalPrice = self.getCandleAt(dd2, mm2, yyyy2).LOW
-		elif (priceType = 'CLOSE'):
+		elif (priceType == 'CLOSE'):
 			initialPrice = self.getCandleAt(dd1, mm1, yyyy1).CLOSE
 			finalPrice = self.getCandleAt(dd2, mm2, yyyy2).CLOSE			
 
