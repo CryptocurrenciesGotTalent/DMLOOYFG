@@ -80,6 +80,6 @@ class GainsByMarketShareStrategy(Strategy.Strategy):
       #  print("{} : {}, {}".format(k,X[-1],Y[-1]))
 
     X = list(map(f, X))
-    Y = movingAverage(Y, listMC, 2)
+    Y = movingAverage(Y, listMC, 20)
 
     return X,Y
