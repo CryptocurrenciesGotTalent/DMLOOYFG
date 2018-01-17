@@ -2,6 +2,13 @@ import random
 import Strategies.Strategy as Strategy
 import Adapters.marketState as MS
 import datetime
+import math
+
+def f(x):
+  return math.log(x/(1-x))
+
+
+
 class GainsByMarketShareStrategy(Strategy.Strategy):
 
   def __init__(self, initialDate, interval):
@@ -45,13 +52,16 @@ class GainsByMarketShareStrategy(Strategy.Strategy):
 
     for k in range(self.nbCoins):
       coin = self.previousDateData.getCoinAtRank(k)
-      variation = coin.getMarketCapVariation((self.currentDate.day,self.currentDate.month,self.currentDate.year),
-                                         (self.previousDate.day,self.previousDate.month,self.previousDate.year))
+      variation = coin.getMarketCapVariation((self.previousDate.day,self.previousDate.month,self.previousDate.year),
+                                        (self.currentDate.day,self.currentDate.month,self.currentDate.year))
+
 
       if variation != None :
         X.append(1-self.previousDateData.getMarketCapAtRank(k)/self.previousDateData.getTotalMarketCap())
         Y.append(variation)
 
-      if X and Y:
-        print("{} : {}, {}".format(k,X[-1],Y[-1]))
+      #if X and Y:
+      #  print("{} : {}, {}".format(k,X[-1],Y[-1]))
+
+    X = list(map(f, X))
     return X,Y

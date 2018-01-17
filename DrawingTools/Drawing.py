@@ -19,6 +19,6 @@ class Drawing:
 
   def draw(self):
     ani = animation.FuncAnimation(self.fig, self.animate,self.strategy.callBackData(),
-                                  interval=5)
+                                  interval=500)
     plt.show()
 

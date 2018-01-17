@@ -58,7 +58,7 @@ class Coin:
 
 			return finalPrice/initialPrice
 		
-		raise None
+		return None
 
 	def getMarketCapVariation(self, initialDate, finalDate):
 		dd1, mm1, yyyy1 = initialDate
