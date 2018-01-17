@@ -19,7 +19,7 @@ class MarketState:
 		if(i>len(self.data)):
 			raise ValueError("invalid rank : too big")
 
-		return Coin(self.data[i-1].split(";")[0])
+		return Coin(self.data[i].split(";")[0])
 
 
 	def getMarketCapAtRank(self, i):

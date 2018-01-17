@@ -15,9 +15,9 @@ class Drawing:
     print(i)
     self.ax.clear()
     x,y = self.strategy.getXY(i)
-    plt.gca().set_ylim([0.5,1.5])
-    plt.gca().set_xlim([0,26])
-    self.ax.plot(x,y, 'ko', markersize=2)
+    plt.gca().set_ylim([0.1,4])
+    plt.gca().set_xlim([0,30])
+    self.ax.plot(x,y)
 
   def draw(self):
     plt.gca().set_ylim([0,5])
