@@ -32,8 +32,11 @@ class Coin:
 		lines = open(os.path.abspath(__file__ + "/../../Data/CoinsData/"+self.name+".txt"), "r").readlines()
 		for line in lines:
 			data = line.split(";")
-			if dateToString(dd,mm,yyyy) == data[0] and float(data[6]) != 0.0:
-				return float(data[6])
+			if dateToString(dd,mm,yyyy) == data[0]:
+				if data[6] != "-\n" and float(data[6]) != 0.0:
+					return float(data[6])
+
+				return None
 
 		return None
 
