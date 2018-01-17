@@ -15,10 +15,14 @@ class Drawing:
     print(i)
     self.ax.clear()
     x,y = self.strategy.getXY(i)
-    self.ax.plot(x,y, 'bo')
+    plt.gca().set_ylim([-0.25,5])
+    plt.gca().set_xlim([0,26])
+    self.ax.plot(x,y, 'ko', markersize=2)
 
   def draw(self):
+    plt.gca().set_ylim([0,5])
     ani = animation.FuncAnimation(self.fig, self.animate,self.strategy.callBackData(),
-                                  interval=500)
+                                  interval=50)
     plt.show()
+
 

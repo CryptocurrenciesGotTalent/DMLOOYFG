@@ -7,7 +7,22 @@ import math
 def f(x):
   return math.log(x/(1-x))
 
+def movingAverage(Y, listMC, period):
+  movingAverage = []
 
+  for i in range(period-1):
+    movingAverage.append(Y[i])
+
+  for i in range(period-1, len(listMC)):
+    lastPeriodVariation = sum(Y[i-period+1:i+1])
+    valueToDraw = lastPeriodVariation/period
+    # lastPeriodTotalMCs = sum(listMC[i-period+1:i+1])
+    # yMCcouples = [(Y[k], listMC[k]) for k in range(i-period+1,i+1)]
+    # yi = sum([y*mc for (y,mc) in yMCcouples[i-period+1:i+1]])/lastPeriodTotalMCs
+
+    movingAverage.append(valueToDraw)
+
+  return movingAverage
 
 class GainsByMarketShareStrategy(Strategy.Strategy):
 
@@ -48,7 +63,7 @@ class GainsByMarketShareStrategy(Strategy.Strategy):
     # self.totalMarketCap = self.previousDateData.getTotalMarketCap()
     X = []
     Y = []
-
+    listMC = []
 
     for k in range(self.nbCoins):
       coin = self.previousDateData.getCoinAtRank(k)
@@ -60,8 +75,11 @@ class GainsByMarketShareStrategy(Strategy.Strategy):
         X.append(1-self.previousDateData.getMarketCapAtRank(k)/self.previousDateData.getTotalMarketCap())
         Y.append(variation)
 
+        listMC.append(self.previousDateData.getMarketCapAtRank(k))
       #if X and Y:
       #  print("{} : {}, {}".format(k,X[-1],Y[-1]))
 
     X = list(map(f, X))
+    Y = movingAverage(Y, listMC, 2)
+
     return X,Y
