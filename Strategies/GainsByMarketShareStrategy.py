@@ -39,17 +39,8 @@ class GainsByMarketShareStrategy(Strategy.Strategy):
   def callBackData(self):
     return range(1,10)
     
-  # MarketShare for each coin
-  # def getInitialX(self):
-  #   date = self.date.split("/")
-  #   initialDateData = MS.MarketState(int(date[0]), int(date[1]), int(date[2]))
-  #   self.nbCoins = initialDateData.getNbCoins()
-  #   self.totalMarketCap = initialDateData.getTotalMarketCap()
-  #   res = [1-initialDateData.getMarketCapAtRank(rank)/self.totalMarketCap for rank in range(0,self.nbCoins)]
-  #   return res
-
-  # def getInitialY(self):
-  #   return [1]*self.nbCoins
+  def getDate(self, i):
+    return MS.dateToString(self.currentDate.day, self.currentDate.month, self.currentDate.year)
 
   def getXY(self, i):
     # date = self.date.split("/")

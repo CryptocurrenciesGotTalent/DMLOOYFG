@@ -9,6 +9,7 @@ class Drawing:
     self.strategy = strategy
     self.fig = plt.figure()
     self.ax = self.fig.add_subplot(1,1,1)
+    self.text = plt.gcf().text(0.7, 0.9, "hello", fontsize=8)
   
   # Chart values at frame i
   def animate(self,i):
@@ -17,14 +18,16 @@ class Drawing:
     x,y = self.strategy.getXY(i)
     plt.gca().set_ylim([0.1,4])
     plt.gca().set_xlim([0,30])
-    self.ax.plot(x,y)
+    horiz_line_data = np.array([1,1])
+    plt.plot([0,50], horiz_line_data, 'r--')
+    self.text.set_text(self.strategy.getDate(i))
+    self.ax.plot(x,y, 'bo', markersize=2)
 
   def draw(self):
     plt.gca().set_ylim([0,5])
     ani = animation.FuncAnimation(self.fig, self.animate,self.strategy.callBackData(),
                                   interval=50)
 
-    plt.axhline(y=1, xmin=0, xmax=30, hold=None)
     plt.show()
 
 
