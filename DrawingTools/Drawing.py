@@ -23,6 +23,8 @@ class Drawing:
     plt.gca().set_ylim([0,5])
     ani = animation.FuncAnimation(self.fig, self.animate,self.strategy.callBackData(),
                                   interval=50)
+
+    plt.axhline(y=1, xmin=0, xmax=30, hold=None)
     plt.show()
 
 
