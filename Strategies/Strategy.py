@@ -18,5 +18,8 @@ class Strategy:
   def getDate(self, i):
     raise NotImplementedError()
 
+  def test(self, i):
+    raise NotImplementedError()
+
   def getY(self, i):
     raise NotImplementedError()

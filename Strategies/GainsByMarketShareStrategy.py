@@ -26,9 +26,11 @@ def movingAverage(Y, listMC, period):
 
 class GainsByMarketShareStrategy(Strategy.Strategy):
 
-  def __init__(self, initialDate, interval, shift):
-    date = initialDate.split("/")
-    self.initialDate = datetime.date(int(date[2]), int(date[1]), int(date[0]))
+  def __init__(self, initialDate, finalDate, interval, shift):
+    date1 = initialDate.split("/")
+    date2 = finalDate.split("/")
+    self.initialDate = datetime.date(int(date1[2]), int(date1[1]), int(date1[0]))
+    self.finalDate = datetime.date(int(date2[2]), int(date2[1]), int(date2[0]))
     self.previousDate = self.initialDate
     self.currentDate = self.initialDate
     self.interval = interval
@@ -42,12 +44,19 @@ class GainsByMarketShareStrategy(Strategy.Strategy):
   def getDate(self, i):
     return MS.dateToString(self.currentDate.day, self.currentDate.month, self.currentDate.year)
 
+  # def getTotalMarketCap2(self, i):
+  #   return MS.totalMarketCap()
+
+  # def test(self,i):
+  #   return MS.getNbCoins(self)
+
   def getXY(self, i):
     # date = self.date.split("/")
     # initialDate = datetime.date(int(date[2]), int(date[1]), int(date[0]))
     self.previousDate = self.previousDate + datetime.timedelta(days = self.shift)
     self.currentDate = self.previousDate + datetime.timedelta(days = self.interval)
-
+    if self.currentDate == self.finalDate:
+      return 0
     self.previousDateData = MS.MarketState(self.previousDate.day, self.previousDate.month, self.previousDate.year)
     self.currentDateData = MS.MarketState(self.currentDate.day, self.currentDate.month, self.currentDate.year)
 

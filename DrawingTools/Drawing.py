@@ -17,7 +17,7 @@ class Drawing:
     self.ax.clear()
     x,y = self.strategy.getXY(i)
     plt.gca().set_ylim([0.1,4])
-    plt.gca().set_xlim([0,30])
+    plt.gca().set_xlim([-1,26])
     horiz_line_data = np.array([1,1])
     plt.plot([0,50], horiz_line_data, 'r--')
     self.text.set_text(self.strategy.getDate(i))
